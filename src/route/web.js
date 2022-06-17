@@ -1,6 +1,7 @@
 import express from "express";
 const router = express.Router();
 import { getHomePage } from "../controller/homeController";
+
 const initWebRounte = (app) => {
   router.get("/", getHomePage);
   router.get("/about", (req, res) => {

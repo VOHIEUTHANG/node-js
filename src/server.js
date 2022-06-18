@@ -1,6 +1,7 @@
 import express from "express";
 import config from "./configs/index";
-import initWebRounte from "./route/web";
+import initWebRoute from "./route/web";
+import initApiRoute from "./route/api";
 import bodyParser from "body-parser";
 require("dotenv").config();
 
@@ -11,7 +12,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 config(app);
-initWebRounte(app);
+initWebRoute(app);
+initApiRoute(app);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

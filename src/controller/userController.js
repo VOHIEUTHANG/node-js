@@ -32,6 +32,6 @@ const updateUser = async (req, res) => {
     "UPDATE users SET firstName = ?, lastName = ?, email = ?, address = ? where id = ? ",
     [firstName, lastName, email, address, id]
   );
-  if (result[0].affectedRows > 0) res.redirect("../");
+  if (result[0].affectedRows > 0) res.redirect("/");
 };
 export { getUserPage, createUser, deleteUser, getUpdatePage, updateUser };

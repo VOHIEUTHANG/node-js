@@ -1,5 +1,6 @@
 import express from "express";
 const router = express.Router();
+
 import { getHomePage } from "../controller/homeController";
 import {
   getUserPage,
@@ -9,7 +10,7 @@ import {
   updateUser,
 } from "../controller/userController";
 
-const initWebRounte = (app) => {
+const initWebRoute = (app) => {
   router.get("/", getHomePage);
   router.get("/user/detail/:userId", getUserPage);
   router.post("/user/post", createUser);
@@ -19,4 +20,4 @@ const initWebRounte = (app) => {
   return app.use("/", router);
 };
 
-export default initWebRounte;
+export default initWebRoute;

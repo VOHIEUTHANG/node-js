@@ -20,29 +20,15 @@
       src="https://kit.fontawesome.com/4a9b76c21b.js"
       crossorigin="anonymous"
     ></script>
-    <script src="js/home.js" defer></script>
+    <script src="js/header.js" defer></script>
+    <style>
+      td,th{
+          vertical-align:middle;
+      }
+  </style>
   </head>
   <body style="background-color: rgba(0, 0, 0, 0.05)">
-    <nav class="navbar">
-      <div class="navbar__logo">
-        <i class="fab fa-accusoft"></i>
-        <a href="">Node JS</a>
-      </div>
-      <ul class="navbar__menu">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Gallery</a></li>
-        <li><a href="#">Weddings</a></li>
-        <li><a href="#">FAQ</a></li>
-        <li><a href="#">Bookings</a></li>
-      </ul>
-      <ul class="navbar__icons">
-        <li><i class="fab fa-twitter"></i></li>
-        <li><i class="fab fa-facebook-f"></i></li>
-      </ul>
-      <a href="#" class="navbar__toggleBtn">
-        <i class="fas fa-bars"></i>
-      </a>
-    </nav>
+    <%- include('layout/header') -%>
     <main>
       <div class="container">
         <div class="main-content">
@@ -84,8 +70,11 @@
                 <td><%= userInfo[i].address %></td>
                 <td>
                   <a type="button" class="btn btn-primary" href="/user/detail/<%= userInfo[i].id %>">Detail</a>
-                  <button type="button" class="btn btn-success">Update</button>
-                  <button type="button" class="btn btn-danger">Remove</button>
+                  <a type="button" class="btn btn-success mx-2" href="/user/update/<%= userInfo[i].id %>">Update</a>
+                  <form action="/user/delete" method="post" class="mb-0" style="display:inline-block">
+                    <input text="text" value="<%= userInfo[i].id %>" name="id" hidden />
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                  </form>
                 </td>
               </tr>
               <% } %>
@@ -98,19 +87,19 @@
             <div class="row border  bg-white p-4 mx-auto w-75" >
               <div class="col-md-6">
                 <label for="inputEmail4" class="form-label">First Name</label>
-                <input class="form-control" id="inputEmail4" name="firstName" placeholder="Thang">
+                <input class="form-control" id="inputEmail4" name="firstName" >
               </div>
               <div class="col-md-6">
                 <label for="inputPassword4" class="form-label">Last Name</label>
-                <input class="form-control" id="inputPassword4" name="lastName" placeholder="Vo">
+                <input class="form-control" id="inputPassword4" name="lastName" >
               </div>
               <div class="col-12 mt-4">
                 <label for="inputAddress" class="form-label">Email</label>
-                <input type="email" class="form-control" id="inputAddress" name="email" placeholder="hieuthang369@gmail.com">
+                <input type="email" class="form-control" id="inputAddress" name="email">
               </div>
               <div class="col-12 mt-4">
                 <label for="inputAddress" class="form-label">Address</label>
-                <input type="text" class="form-control" id="inputAddress" name="address" placeholder="14/1c - Phuoc Long B - HCM">
+                <input type="text" class="form-control" id="inputAddress" name="address" >
               </div>
               <div class="col-auto mt-4">
                 <button type="submit" class="btn btn-primary mb-3">Submit</button>

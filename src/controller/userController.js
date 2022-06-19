@@ -1,4 +1,6 @@
 import pool from "../configs/connectDB";
+import multer from "multer";
+
 const getUserPage = async (req, res) => {
   const { userId } = req.params;
   const [rows] = await pool.execute("SELECT * FROM users where id = ? ", [
@@ -34,4 +36,30 @@ const updateUser = async (req, res) => {
   );
   if (result[0].affectedRows > 0) res.redirect("/");
 };
-export { getUserPage, createUser, deleteUser, getUpdatePage, updateUser };
+const getUploadFilePage = (req, res) => {
+  res.render("upload.ejs");
+};
+
+let upload = multer().single("avatar");
+
+const handlerUploadFile = async (req, res, next) => {
+  console.log(req.file);
+  upload(req, res, function (err) {
+    if (req.fileValidationError) {
+      return res.send(req.fileValidationError);
+    } else if (!req.file) {
+      return res.send("Please select an image to upload");
+    }
+    res.render("uploadSuccess.ejs", { url: `/images/${req.file.filename}` });
+  });
+};
+
+export {
+  getUserPage,
+  createUser,
+  deleteUser,
+  getUpdatePage,
+  updateUser,
+  getUploadFilePage,
+  handlerUploadFile,
+};

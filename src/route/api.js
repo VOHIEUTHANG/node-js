@@ -8,7 +8,7 @@ import {
 } from "../controller/apiController";
 
 const initApiRoute = (app) => {
-  router.get("/users", getAllUsers);
+  router.get("/get-users", getAllUsers);
   router.post("/create-user", createNewUser);
   router.put("/update-user/:userId", updateUser);
   router.delete("/delete-user/:userId", deleteUser);
